@@ -18,7 +18,35 @@ namespace SampleREST.Services.DAL
 
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                string strSql = @"DELETE FROM Employees WHERE EmployeeId = @EmployeeId";
+                SqlCommand cmd = new SqlCommand(strSql, conn);
+                cmd.Parameters.AddWithValue("@EmployeeId", id);
+
+                try
+                {
+                    conn.Open();
+                    int result = cmd.ExecuteNonQuery();
+                    if (result <= 0)
+                    {
+                        throw new Exception("Employee not found");
+                    }
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    conn.Close();
+                }
+            }
         }
 
         public IEnumerable<Employee> GetAll()
@@ -110,12 +138,72 @@ namespace SampleREST.Services.DAL
 
         public Employee Insert(Employee employee)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                string strSql = @"INSERT INTO Employees (EmployeeName, City) VALUES (@EmployeeName, @City);
+                                  select @@identity;";
+                SqlCommand cmd = new SqlCommand(strSql, conn);
+                cmd.Parameters.AddWithValue("@EmployeeName", employee.EmployeeName);
+                cmd.Parameters.AddWithValue("@City", employee.City);
+                conn.Open();
+                try
+                {
+                    int id = Convert.ToInt32(cmd.ExecuteScalar());
+                    employee.EmployeeId = id;
+                    return employee;
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    conn.Close();
+                }
+            }
         }
 
         public Employee Update(Employee employee)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                string strSql = @"UPDATE Employees SET EmployeeName = @EmployeeName, City = @City
+                                  WHERE EmployeeId = @EmployeeId";
+
+                SqlCommand cmd = new SqlCommand(strSql, conn);
+                cmd.Parameters.AddWithValue("@EmployeeId", employee.EmployeeId);
+                cmd.Parameters.AddWithValue("@EmployeeName", employee.EmployeeName);
+                cmd.Parameters.AddWithValue("@City", employee.City);
+                conn.Open();
+
+                try
+                {
+                    int result = cmd.ExecuteNonQuery();
+                    if (result <= 0)
+                    {
+                        throw new Exception("Employee not found");
+                    }
+                    return employee;
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    conn.Close();
+                }
+            }
         }
 
 
