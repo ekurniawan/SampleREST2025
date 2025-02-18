@@ -11,7 +11,8 @@ builder.Services.AddSwaggerGen();
 
 
 //DI
-builder.Services.AddScoped<IEmployee, EmployeeADO>();
+builder.Services.AddScoped<IEmployee, EmployeeDapper>();
+builder.Services.AddScoped<ICourse, CourseDapper>();
 
 var app = builder.Build();
 
