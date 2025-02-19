@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using SampleREST.Services.DAL;
+using SampleREST.Services.EF;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +11,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//EF
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection"));
+});
+
 
 //DI
+builder.Services.AddScoped<ICategory, CategoryEF>();
 builder.Services.AddScoped<IEmployee, EmployeeDapper>();
 builder.Services.AddScoped<ICourse, CourseDapper>();
 

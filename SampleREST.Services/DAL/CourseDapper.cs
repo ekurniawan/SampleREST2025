@@ -72,5 +72,25 @@ namespace SampleREST.Services.DAL
             }
             return courses;
         }
+
+        public Course GetCourseById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Course AddCourse(Course course)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Course UpdateCourse(Course course)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCourse(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

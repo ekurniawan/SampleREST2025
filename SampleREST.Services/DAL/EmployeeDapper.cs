@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using SampleREST.Services.Models;
+using System.Transactions;
 
 namespace SampleREST.Services.DAL
 {
@@ -20,6 +21,7 @@ namespace SampleREST.Services.DAL
 
         public void Delete(string id)
         {
+
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
                 string strSql = @"DELETE FROM Employees WHERE EmployeeId = @EmployeeId";

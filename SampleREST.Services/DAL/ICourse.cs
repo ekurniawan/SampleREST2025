@@ -6,5 +6,10 @@ namespace SampleREST.Services.DAL
     {
         IEnumerable<ViewCourseWithCategory> GetAllCourse();
         IEnumerable<Course> GetAllCourses();
+        Course GetCourseById(int id);
+        Course AddCourse(Course course);
+        Course UpdateCourse(Course course);
+        void DeleteCourse(int id);
+
     }
 }
