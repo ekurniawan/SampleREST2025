@@ -8,7 +8,7 @@
 
         public decimal Price { get; set; }
 
-        public OrderDetailDTO? OrderHeader { get; set; }
+        public OrderHeaderDTO? OrderHeader { get; set; }
 
         public ProductDTO? Product { get; set; }
     }
