@@ -8,7 +8,7 @@ namespace CodeFirstSample.Models
     {
         public int OrderDetailId { get; set; }
 
-        public string OrderHeaderId { get; set; } = null!;
+        public int OrderHeaderId { get; set; }
 
         public int ProductId { get; set; }
 
