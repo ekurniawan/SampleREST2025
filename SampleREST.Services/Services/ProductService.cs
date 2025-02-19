@@ -57,9 +57,22 @@ namespace SampleREST.Services.Services
             throw new NotImplementedException();
         }
 
-        public Task<Product> Update(Product entity)
+        public async Task<Product> Update(Product entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var product = await GetById(entity.ProductId);
+                product.ProductName = entity.ProductName;
+                product.Stock = entity.Stock;
+                product.Price = entity.Price;
+                product.CategoryId = entity.CategoryId;
+                await _rapidDbContext.SaveChangesAsync();
+                return product;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

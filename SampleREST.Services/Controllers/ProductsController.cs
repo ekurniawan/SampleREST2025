@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SampleREST.Services.DTO;
 using SampleREST.Services.ModelEF;
@@ -11,26 +12,19 @@ namespace SampleREST.Services.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProduct _product;
-        public ProductsController(IProduct product)
+        private readonly IMapper _mapper;
+
+        public ProductsController(IProduct product, IMapper mapper)
         {
             _product = product;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IEnumerable<ProductDTO>> Get()
         {
             var products = await _product.GetAll();
-            var productsDto = products.Select(x => new ProductDTO
-            {
-                ProductId = x.ProductId,
-                ProductName = x.ProductName,
-                Stock = x.Stock,
-                Price = x.Price,
-                Category = new CategoryDTO
-                {
-                    CategoryName = x.Category.CategoryName
-                }
-            });
+            var productsDto = _mapper.Map<IEnumerable<ProductDTO>>(products);
             return productsDto;
         }
 
@@ -38,38 +32,28 @@ namespace SampleREST.Services.Controllers
         public async Task<ProductDTO> Get(int id)
         {
             var product = await _product.GetById(id);
-            var productDto = new ProductDTO
-            {
-                ProductId = product.ProductId,
-                ProductName = product.ProductName,
-                Stock = product.Stock,
-                Price = product.Price,
-                Category = new CategoryDTO
-                {
-                    CategoryName = product.Category.CategoryName
-                }
-            };
+            var productDto = _mapper.Map<ProductDTO>(product);
             return productDto;
         }
 
         [HttpPost]
         public async Task<ProductDTO> Post(CreateProductDTO createProductDTO)
         {
-            var product = new Product
-            {
-                ProductName = createProductDTO.ProductName,
-                Stock = createProductDTO.Stock,
-                Price = createProductDTO.Price,
-                CategoryId = createProductDTO.CategoryId
-            };
+            var product = _mapper.Map<Product>(createProductDTO);
             var result = await _product.Add(product);
-            var productDto = new ProductDTO
-            {
-                ProductId = result.ProductId,
-                ProductName = result.ProductName,
-                Stock = result.Stock,
-                Price = result.Price,
-            };
+            var productDto = _mapper.Map<ProductDTO>(result);
+            return productDto;
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ProductDTO> Put(int id, UpdateProductDTO updateProductDTO)
+        {
+            var product = _mapper.Map<Product>(updateProductDTO);
+
+            var result = await _product.Update(product);
+
+            var productWithCat = await _product.GetById(id);
+            var productDto = _mapper.Map<ProductDTO>(productWithCat);
             return productDto;
         }
 

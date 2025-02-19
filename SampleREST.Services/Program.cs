@@ -31,6 +31,10 @@ builder.Services.AddScoped<ICustomer, CustomerServices>();
 builder.Services.AddScoped<IEmployee, EmployeeDapper>();
 //builder.Services.AddScoped<ICourse, CourseDapper>();
 
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
