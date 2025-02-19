@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SampleREST.Services.EF;
 using SampleREST.Services.Models;
 
-namespace SampleREST.Services.DAL
+/*namespace SampleREST.Services.DAL
 {
     public class CategoryEF : ICategory
     {
@@ -94,4 +93,4 @@ namespace SampleREST.Services.DAL
             }
         }
     }
-}
+}*/

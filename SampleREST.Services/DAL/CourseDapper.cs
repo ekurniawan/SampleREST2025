@@ -2,7 +2,7 @@
 using Microsoft.Data.SqlClient;
 using SampleREST.Services.Models;
 
-namespace SampleREST.Services.DAL
+/*namespace SampleREST.Services.DAL
 {
     public class CourseDapper : ICourse
     {
@@ -43,54 +43,55 @@ namespace SampleREST.Services.DAL
                     return course;
                 }, splitOn: "CategoryId");
 
-                return results;*/
+                return results;
 
 
-                SqlCommand sqlCommand = new SqlCommand(strSql, conn);
-                conn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
-                while (reader.Read())
-                {
-                    Course course = new Course();
-                    course.CourseId = reader.GetInt32(0);
-                    course.Name = reader.GetString(1);
-                    //course.ImageName = reader.GetString(2);
-                    //course.Duration = reader.GetDouble(3);
-                    //course.Description = reader.GetString(4);
-                    course.CategoryId = reader.GetInt32(5);
-                    Category category = new Category();
-                    category.CategoryId = reader.GetInt32(5);
-                    category.Name = reader.GetString(6);
-                    category.Description = reader.GetString(7);
-                    course.Category = category;
-                    courses.Add(course);
-                }
+SqlCommand sqlCommand = new SqlCommand(strSql, conn);
+conn.Open();
+SqlDataReader reader = sqlCommand.ExecuteReader();
+while (reader.Read())
+{
+    Course course = new Course();
+    course.CourseId = reader.GetInt32(0);
+    course.Name = reader.GetString(1);
+    //course.ImageName = reader.GetString(2);
+    //course.Duration = reader.GetDouble(3);
+    //course.Description = reader.GetString(4);
+    course.CategoryId = reader.GetInt32(5);
+    Category category = new Category();
+    category.CategoryId = reader.GetInt32(5);
+    category.Name = reader.GetString(6);
+    category.Description = reader.GetString(7);
+    course.Category = category;
+    courses.Add(course);
+}
 
-                reader.Close();
-                sqlCommand.Dispose();
-                conn.Close();
+reader.Close();
+sqlCommand.Dispose();
+conn.Close();
             }
             return courses;
         }
 
         public Course GetCourseById(int id)
-        {
-            throw new NotImplementedException();
-        }
+{
+    throw new NotImplementedException();
+}
 
-        public Course AddCourse(Course course)
-        {
-            throw new NotImplementedException();
-        }
+public Course AddCourse(Course course)
+{
+    throw new NotImplementedException();
+}
 
-        public Course UpdateCourse(Course course)
-        {
-            throw new NotImplementedException();
-        }
+public Course UpdateCourse(Course course)
+{
+    throw new NotImplementedException();
+}
 
-        public void DeleteCourse(int id)
-        {
-            throw new NotImplementedException();
-        }
+public void DeleteCourse(int id)
+{
+    throw new NotImplementedException();
+}
     }
 }
+*/

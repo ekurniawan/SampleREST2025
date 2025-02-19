@@ -1,6 +1,6 @@
 ﻿using SampleREST.Services.Models;
 
-namespace SampleREST.Services.DAL
+/*namespace SampleREST.Services.DAL
 {
     public interface ICategory
     {
@@ -10,4 +10,4 @@ namespace SampleREST.Services.DAL
         Category UpdateCategory(Category category);
         void DeleteCategory(int id);
     }
-}
+}*/

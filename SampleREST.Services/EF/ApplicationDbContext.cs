@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SampleREST.Services.Models;
 
-namespace SampleREST.Services.EF
+/*namespace SampleREST.Services.EF
 {
     public class ApplicationDbContext : DbContext
     {
@@ -19,8 +19,8 @@ namespace SampleREST.Services.EF
             /*modelBuilder.Entity<Course>()
                 .HasOne(c => c.Category)
                 .WithMany(c => c.Courses)
-                .HasForeignKey(c => c.CategoryId);*/
+                .HasForeignKey(c => c.CategoryId);
         }
 
     }
-}
+}*/

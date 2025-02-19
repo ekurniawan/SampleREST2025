@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SampleREST.Services.DAL;
 using SampleREST.Services.Models;
 
-namespace SampleREST.Services.Controllers
+/*namespace SampleREST.Services.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -20,15 +20,16 @@ namespace SampleREST.Services.Controllers
         {
             var results = _course.GetAllCourse();
             return results;
-        }*/
-
-        [HttpGet]
-        public IEnumerable<Course> Get()
-        {
-            var results = _course.GetAllCourses();
-            return results;
         }
+
+[HttpGet]
+public IEnumerable<Course> Get()
+{
+    var results = _course.GetAllCourses();
+    return results;
+}
 
 
     }
 }
+*/

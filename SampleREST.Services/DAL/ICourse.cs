@@ -1,6 +1,6 @@
 ﻿using SampleREST.Services.Models;
 
-namespace SampleREST.Services.DAL
+/*namespace SampleREST.Services.DAL
 {
     public interface ICourse
     {
@@ -13,3 +13,4 @@ namespace SampleREST.Services.DAL
 
     }
 }
+*/
