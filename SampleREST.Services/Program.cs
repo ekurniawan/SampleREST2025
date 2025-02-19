@@ -25,6 +25,7 @@ builder.Services.AddDbContext<RapidDbContext>(options =>
 
 
 //DI
+builder.Services.AddScoped<IProduct, ProductService>();
 builder.Services.AddScoped<ICustomer, CustomerServices>();
 //builder.Services.AddScoped<ICategory, CategoryEF>();
 builder.Services.AddScoped<IEmployee, EmployeeDapper>();

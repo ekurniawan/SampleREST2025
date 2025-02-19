@@ -20,5 +20,17 @@ namespace SampleREST.Services.Controllers
         {
             return await _customer.GetAll();
         }
+
+        [HttpGet("{id}")]
+        public async Task<Customer> Get(int id)
+        {
+            return await _customer.GetById(id);
+        }
+
+        [HttpGet("name/{name}")]
+        public async Task<IEnumerable<Customer>> Get(string name)
+        {
+            return await _customer.GetByName(name);
+        }
     }
 }

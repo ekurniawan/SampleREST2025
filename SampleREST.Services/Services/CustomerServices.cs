@@ -38,9 +38,10 @@ namespace SampleREST.Services.Services
             return result;
         }
 
-        public Task<IEnumerable<Customer>> GetByName(string name)
+        public async Task<IEnumerable<Customer>> GetByName(string name)
         {
-            throw new NotImplementedException();
+            var results = await _rapidDbContext.Customers.Where(x => x.CustomerName.Contains(name)).ToListAsync();
+            return results;
         }
 
         public Task<Customer> Update(Customer entity)
