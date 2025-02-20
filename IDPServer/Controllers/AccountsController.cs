@@ -41,5 +41,19 @@ namespace IDPServer.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("AddRole")]
+        public async Task<IActionResult> AddRole(string roleName)
+        {
+            try
+            {
+                await _account.AddRole(roleName);
+                return Ok("Role Added Successfully !");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

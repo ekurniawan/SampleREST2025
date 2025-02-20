@@ -8,8 +8,8 @@ namespace IDPServer.DAL
         Task<IdentityUser> Login(string username, string password);
         Task<IdentityUser> GetUser(string username);
         Task<IdentityRole> GetRole(string roleName);
-        Task AddRole(IdentityRole role);
-        Task AddUserToRole(IdentityUser user, IdentityRole role);
+        Task AddRole(string roleName);
+        Task AddUserToRole(string username, string rolename);
         Task DeleteRole(string roleName);
     }
 }
