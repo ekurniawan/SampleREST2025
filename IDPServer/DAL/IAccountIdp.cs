@@ -5,7 +5,7 @@ namespace IDPServer.DAL
     public interface IAccountIdp
     {
         Task<IdentityUser> Register(IdentityUser identityUser, string password);
-        Task<IdentityUser> Login(string username, string password);
+        Task<bool> Login(string username, string password);
         Task<IdentityUser> GetUser(string username);
         Task<IdentityRole> GetRole(string roleName);
         Task<IEnumerable<string>> GetRolesFromUser(string username);

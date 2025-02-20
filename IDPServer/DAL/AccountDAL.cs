@@ -134,9 +134,22 @@ namespace IDPServer.DAL
             return user;
         }
 
-        public Task<IdentityUser> Login(string username, string password)
+        public async Task<bool> Login(string username, string password)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+            {
+                throw new ArgumentException("User not found !");
+            }
+            var result = await _userManager.CheckPasswordAsync(user, password);
+            if (result)
+            {
+                return true;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid Password !");
+            }
         }
 
         public async Task<IdentityUser> Register(IdentityUser identityUser, string password)
