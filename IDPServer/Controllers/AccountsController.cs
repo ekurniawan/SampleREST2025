@@ -121,6 +121,11 @@ namespace IDPServer.Controllers
 
                 List<Claim> claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.Name, loginDTO.Username));
+                var roles = await _account.GetRolesFromUser(loginDTO.Username);
+                foreach (var role in roles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
 
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
