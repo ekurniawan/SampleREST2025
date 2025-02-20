@@ -20,6 +20,8 @@ namespace CodeFirstSample.Controllers
             _mapper = mapper;
         }
 
+
+        [Authorize(Roles = "superadmin,admin")]
         [HttpGet("{id}")]
         public async Task<IEnumerable<OrderDetailDTO>> GetByOrderHeaderId(int id)
         {
