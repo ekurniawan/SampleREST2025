@@ -21,6 +21,8 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.AddScoped<IAccountIdp, AccountDAL>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

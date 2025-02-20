@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CodeFirstSample.DAL;
 using CodeFirstSample.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
