@@ -1,6 +1,7 @@
 ﻿using IDPServer.DAL;
 using IDPServer.DTO;
 using IDPServer.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using System.Text;
 
 namespace IDPServer.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AccountsController : ControllerBase
@@ -26,6 +28,8 @@ namespace IDPServer.Controllers
             _appSettings = appSettings.Value;
         }
 
+
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(AccountRegisterDTO accountRegisterDTO)
         {
@@ -51,6 +55,8 @@ namespace IDPServer.Controllers
             }
         }
 
+
+        [Authorize(Roles = "superadmin")]
         [HttpPost("AddRole")]
         public async Task<IActionResult> AddRole(string roleName)
         {
